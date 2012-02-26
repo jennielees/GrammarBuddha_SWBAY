@@ -8,10 +8,10 @@
 
 
 // Import the interfaces
-#import "HelloWorldLayer.h"
+#import "ArcadeLayer.h"
 
 // HelloWorldLayer implementation
-@implementation HelloWorldLayer
+@implementation ArcadeLayer
 
 +(CCScene *) scene
 {
@@ -19,7 +19,7 @@
 	CCScene *scene = [CCScene node];
 	
 	// 'layer' is an autorelease object.
-	HelloWorldLayer *layer = [HelloWorldLayer node];
+	ArcadeLayer *layer = [ArcadeLayer node];
 	
 	// add layer as a child to scene
 	[scene addChild: layer];
@@ -35,8 +35,9 @@
 	// Apple recommends to re-assign "self" with the "super" return value
 	if( (self=[super init])) {
 		
+        CGSize screenSize = [CCDirector sharedDirector].winSize;
 		// create and initialize a Label
-		CCLabelTTF *label = [CCLabelTTF labelWithString:@"Hello World" fontName:@"Marker Felt" fontSize:64];
+		CCLabelTTF *label = [CCLabelTTF labelWithString:@"ARCADE GOES HERE" fontName:@"Marker Felt" fontSize:64];
 
 		// ask director the the window size
 		CGSize size = [[CCDirector sharedDirector] winSize];
@@ -46,8 +47,25 @@
 		
 		// add the label as a child to this Layer
 		[self addChild: label];
+        
+        
+        CCLabelTTF *backLabel = [CCLabelTTF labelWithString:@"BACK" fontName:@"Last Ninja" fontSize:60];
+        CCMenuItemLabel *backButtonLabel = [CCMenuItemLabel itemWithLabel:backLabel target:self selector:@selector(goBack)];
+        //titleLabel.position = ccp(screenSize.width/2, screenSize.height*0.9f);
+        //[self addChild:titleLabel];
+        
+        CCMenu *mainMenu = [CCMenu menuWithItems:backButtonLabel,nil];
+        [mainMenu setPosition: ccp(screenSize.width/2, screenSize.height*0.35f)];
+        [self addChild:mainMenu];
+        
+        
 	}
 	return self;
+}
+
+-(void) goBack {
+    [[GameManager sharedGameManager] runSceneWithID:kMainMenuScene];
+
 }
 
 // on "dealloc" you need to release all your retained objects
