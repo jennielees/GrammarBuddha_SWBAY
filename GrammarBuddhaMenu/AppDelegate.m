@@ -13,6 +13,11 @@
 #import "RootViewController.h"
 #import "GameManager.h"
 
+// Remove these
+#import "NoRedInkHTTPClient.h"
+#import "DataController.h"
+// --end
+
 @implementation AppDelegate
 
 @synthesize window;
@@ -40,6 +45,26 @@
 }
 - (void) applicationDidFinishLaunching:(UIApplication*)application
 {
+    
+    // remove after ui is placed in. These calls are just demonstrating use.
+    if ([[DataController shared] numberOfRelevantTerms] == 0) {
+        [[DataController shared] createRelevantTermWithName:@"James Richard" gender:RelevantTermGenderMale];
+        [[DataController shared] createRelevantTermWithName:@"Jeff Scheur" gender:RelevantTermGenderMale];
+        [[DataController shared] createRelevantTermWithName:@"Shanson Lunny" gender:RelevantTermGenderMale];
+        [[DataController shared] createRelevantTermWithName:@"Jennie Lee" gender:RelevantTermGenderFemale];
+        [[DataController shared] createRelevantTermWithName:@"Jordan Kandah" gender:RelevantTermGenderFemale];
+        [[DataController shared] createRelevantTermWithName:@"Emmy Chen" gender:RelevantTermGenderFemale];
+        [[DataController shared] createRelevantTermWithName:@"Anita" gender:RelevantTermGenderFemale];
+        
+    }
+    
+    [[NoRedInkHTTPClient sharedClient] pullQuestionsWithGroup:NoRedInkGroupCommasRunonsFragments subgroups:nil questions:10 exclusions:nil success:^(AFHTTPRequestOperation *operation, NSArray* questions) {
+        NSLog(@"Loaded questions: %@", questions);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
+    
+    // --end
 	// Init the window
 	window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	
