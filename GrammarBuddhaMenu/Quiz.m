@@ -49,7 +49,7 @@
                                        insertIntoManagedObjectContext:self.managedObjectContext];
     
     quizQuestion.grammarQuestion = grammarQuestion;
-
+    quizQuestion.createdAt = [NSDate date];
     [self addQuizQuestionsObject:quizQuestion];
 
     return quizQuestion;
