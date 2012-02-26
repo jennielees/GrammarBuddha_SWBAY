@@ -14,11 +14,13 @@
 	BOOL isSoundEffectsON;
 	BOOL hasPlayerDied;
 	SceneTypes currentScene;
+    NSMutableSet *selectedCategories;
 }
 
 @property (readwrite) BOOL isMusicON;
 @property (readwrite) BOOL isSoundEffectsON;
 @property (readwrite) BOOL hasPlayerDied;
+@property (readwrite, retain) NSSet *selectedCategories;
 
 + (GameManager*) sharedGameManager; // Class method returning one and only (singleton) instance of GameManager
 - (void)runSceneWithID:(SceneTypes)sceneID; // called when director (via gameManager) has to change which scene is running

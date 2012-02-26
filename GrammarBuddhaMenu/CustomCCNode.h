@@ -15,5 +15,6 @@
 
 @property (nonatomic, readonly) CGRect rect;
 @property (nonatomic, assign) CustomCCNode* linkedNode;
+@property (nonatomic, readwrite) BOOL isSelected;
 
 @end

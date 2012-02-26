@@ -22,6 +22,7 @@ static GameManager* _sharedGameManager = nil; // define the singleton object
 @synthesize isMusicON;
 @synthesize isSoundEffectsON;
 @synthesize hasPlayerDied;
+@synthesize selectedCategories;//plus custom getter setter
 
 + (GameManager*) sharedGameManager {
 
@@ -47,6 +48,18 @@ static GameManager* _sharedGameManager = nil; // define the singleton object
 	return nil;
 }
 
+- (void) toggleCategorySelection: (NSString *)cat {
+    // using a set to quickly query whether the ints are there.
+    if ([selectedCategories containsObject:cat]) {
+        // It was selected. Deselect!
+        [selectedCategories removeObject:cat];
+        NSLog(@"Removing %d from set", cat); 
+    } else {
+        // Select it
+        [selectedCategories addObject:cat];
+        NSLog(@"Adding %d to set", cat);
+    }
+}
 
 - (id) init {
 	// Initialize ze class

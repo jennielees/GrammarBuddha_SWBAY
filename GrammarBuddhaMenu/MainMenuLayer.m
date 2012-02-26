@@ -52,13 +52,14 @@
                                      disabledImage:nil
                                      target:self
                                      selector:@selector(customUser)];
-    CCMenuItemImage *customButton = [CCMenuItemImage
+/*    CCMenuItemImage *customButton = [CCMenuItemImage
                                        itemFromNormalImage:@"fillerBtn.png"
                                        selectedImage:@"fillerBtn.png"
                                        disabledImage:nil
                                        target:self
                                        selector:@selector(customUser)];
-    
+ */
+
 	mainMenu = [CCMenu
 				menuWithItems:arcadeButton,challengeButton,practiceButton,nil];
 	[mainMenu alignItemsVerticallyWithPadding:screenSize.height * 0.059f];
@@ -69,8 +70,14 @@
 	[mainMenu runAction:moveEffect];
 	[self addChild:mainMenu z:0 tag:kMainMenuTagValue];
     
+    
+    // App name ease in
     CCSprite *titleNode = [CCSprite spriteWithFile:@"grammarBuddhaText.png"];
-    titleNode.position = ccp(200,screenSize.height * 0.80f);
+    titleNode.position = ccp(200,screenSize.height*1.8f);
+    id move =  [CCMoveBy actionWithDuration:3 position:ccp(0,-screenSize.height)];
+    id action = [CCEaseBounceOut actionWithAction:move];
+    [titleNode runAction: action];
+    
     [self addChild:titleNode];
 	
 }

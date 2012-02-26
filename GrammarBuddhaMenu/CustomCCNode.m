@@ -9,10 +9,10 @@
 #import "CustomCCNode.h"
 #import "cocos2d.h"
 
-
 @implementation CustomCCNode
 
 @synthesize linkedNode;
+@synthesize isSelected;
 
 - (CGRect)rect
 {
@@ -49,8 +49,10 @@
 - (void)toggleGlow {
     if (self.linkedNode.opacity == 0) {
         self.linkedNode.opacity = 255.0;
+        self.isSelected = YES;
     } else {
         self.linkedNode.opacity = 0.0;
+        self.isSelected = NO;
     }
     NSLog(@"Toggling a glow");
 }
@@ -63,7 +65,6 @@
     NSLog(@"%i", self.tag);
     [self toggleGlow];
     NSLog(@"calling toggle glow");
-    
     return YES;
 }
 
