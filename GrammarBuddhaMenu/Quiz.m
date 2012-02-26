@@ -17,7 +17,7 @@
 @dynamic secondsRemaining;
 @dynamic quizQuestions;
 
-- (QuizQuestion*) appendNewQuizQuestionError:(NSError**)error {
+- (QuizQuestion*) appendNewQuizQuestionWithError:(NSError**)error {
     // Grab a list of questions currently not within this quiz
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"QuizQuestion"];
     

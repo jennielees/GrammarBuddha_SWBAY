@@ -18,7 +18,7 @@
 @property (nonatomic, retain) NSNumber * secondsRemaining;
 @property (nonatomic, retain) NSOrderedSet *quizQuestions;
 
-- (QuizQuestion*) appendNewQuizQuestionError:(NSError**)error;
+- (QuizQuestion*) appendNewQuizQuestionWithError:(NSError**)error;
 
 @end
 
